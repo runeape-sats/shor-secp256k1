@@ -121,16 +121,22 @@ While the above demonstrates Shor’s algorithm’s efficacy for solving the ECD
 For factoring, Cai considers Shor’s algorithm applied to an $\(n\)$-bit integer $\(N = pq\)$ (e.g., $\(n = 2048\$) for RSA-2048), where the QFT operates on $\(m \approx 2n \approx 4096\)$ qubits. The noise model perturbs controlled rotation gates 
 
 $$
-\(R_k = \begin{bmatrix} 1 & 0 \\ 0 & e^{2\pi i / 2^k} \end{bmatrix}\)
+\{R}_k = \begin{bmatrix} 
+1 & 0 \\ 
+0 & e^{2\pi i / 2^k} 
+\end{bmatrix}\
 $$ 
 
 to
 
 $$
-\(\tilde{R}_k = \begin{bmatrix} 1 & 0 \\ 0 & e^{2\pi i (1 + \epsilon r) / 2^k} \end{bmatrix}\)
-$$ 
+\tilde{R}_k = \begin{bmatrix} 
+1 & 0 \\ 
+0 & e^{2\pi i (1 + \epsilon r) / 2^k} 
+\end{bmatrix}
+$$
 
-, with $\(r \sim N(0,1)\)$ and $\(\epsilon\)$ scaling the noise. The algorithm fails when:
+with $\(r \sim N(0,1)\)$ and $\(\epsilon\)$ scaling the noise. The algorithm fails when:
 
 $$\[
 b + \log_2 (1/\epsilon) < \frac{1}{3} \log_2 n - c,
@@ -139,6 +145,18 @@ b + \log_2 (1/\epsilon) < \frac{1}{3} \log_2 n - c,
 where $\(b\)$ is the index where noisy gates begin $(\(k \geq b\))$, and $\(c > 0\)$ is a constant. For $\(n = 2048\)$, $\(\frac{1}{3} \log_2 n \approx 3.67\)$. Setting $\(b = 2\)$, $\(\epsilon > 0.31\)$, the per-gate infidelity is ~24% for $\(k = 2\)$, dropping to $\(10^{-6}\)$ for $\(k = 10\)$. With $\(O(4096^2) \approx 1.67 \times 10^7\)$ gates, the threshold averages to ~1% per gate, beyond which the success probability becomes exponentially small.
 
 For ECDLP on SECP256K1, the QFT uses $\(m \approx 256\)$ qubits (or slightly more, e.g., 260–300), reflecting the bit length of the order $\(n \approx 2^{256}\)$. Assuming the same noise model, the gate count is $\(O(256^2) \approx 65536\)$, significantly fewer than factoring. Adapting Cai’s threshold to the QFT size $(\(b + \log_2 (1/\epsilon) < \frac{1}{3} \log_2 m - c\))$, with $\(m = 256\)$, $\(\frac{1}{3} \log_2 m \approx 2.67\)$. For $\(b = 2\)$, $\(\epsilon > 0.63\)$, yielding infidelities of ~49% for $\(k = 3\)$ and $\(10^{-6}\)$ for $\(k = 10\)$. Adjusting to $\(b = 1\)$, $\(\epsilon \approx 0.31\)$ aligns with factoring’s noise level, suggesting a per-gate error rate of ~1–5% for early gates.
+
+**Comparison**:
+
+| **Aspect**            | **Factoring (Cai’s Paper)**                  | **Discrete Log (SECP256K1)**            |
+|-----------------------|---------------------------------------------|----------------------------------------|
+| **Problem Size**      | $\( n = 2048 \)$ bits                         | $\( n \approx 2^{256} \), but \( m = 256 \)$ |
+| **QFT Qubits (m)** | $\( m \approx 2n = 4096 \)$                   | $\( m \approx 256 \)$                    |
+| **Gate Count**        | $\( O(4096^2) \approx 1.67 \times 10^7 \)$    | $\( O(256^2) \approx 65536 \)$           |
+| **Threshold**         | $\( b + \log_2 (1/\epsilon) < 3.67 \)$        | $\( b + \log_2 (1/\epsilon) < 2.67 \) ?$ |
+| **$\(\epsilon\)$ Example** | $\( \epsilon \approx 0.31 \) (\( b = 2 \))$ | $\( \epsilon \approx 0.63 \) (\( b = 2 \))$ |
+| **Per-Gate Error**    | ~1–5% for $\( k = 2–5 \), ~\( 10^{-6} \) for \( k = 10 \)$ | ~1–5% for $\( k = 2–5 \), ~\( 10^{-6} \) for \( k = 10 \)$ |
+| **Cumulative Error**  | Higher due to more gates                   | Lower due to fewer gates              |
 
 **Key Differences**:
 - **Circuit Size**: Factoring’s $\(O(10^7)\)$ gates versus ECDLP’s $\(O(10^5)\)$ imply greater noise accumulation in factoring, lowering its tolerance.
@@ -162,4 +180,4 @@ Using $y^2 = x^3 + 7$ over $\mathbb{F}_{11}$, we showed Shor’s algorithm with 
 7. **Hasse, H.** (1936). Zur Theorie der abstrakten elliptischen Funktionenkörper III. *Journal für die reine und angewandte Mathematik, 175*, 193–208.  
 8. **Nakamoto, S.** (2008). Bitcoin: A Peer-to-Peer Electronic Cash System. Retrieved from https://bitcoin.org/bitcoin.pdf  
 9. **Proos, J., & Zalka, C.** (2003). Shor’s discrete logarithm quantum algorithm for elliptic curves. *Quantum Information & Computation, 3*(4), 317–344.
-10. **Cai, J. ** (2023). Shor’s Algorithm Does Not Factor Large Integers in the Presence of Noise. Retrieved from https://arxiv.org/abs/2306.10072v1, University of Wisconsin-Madison
+10. **Cai, J.** (2023). Shor’s Algorithm Does Not Factor Large Integers in the Presence of Noise. Retrieved from https://arxiv.org/abs/2306.10072v1, University of Wisconsin-Madison
