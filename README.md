@@ -181,3 +181,6 @@ Using $y^2 = x^3 + 7$ over $\mathbb{F}_{11}$, we showed Shor’s algorithm with 
 8. **Nakamoto, S.** (2008). Bitcoin: A Peer-to-Peer Electronic Cash System. Retrieved from https://bitcoin.org/bitcoin.pdf  
 9. **Proos, J., & Zalka, C.** (2003). Shor’s discrete logarithm quantum algorithm for elliptic curves. *Quantum Information & Computation, 3*(4), 317–344.
 10. **Cai, J.** (2023). Shor’s Algorithm Does Not Factor Large Integers in the Presence of Noise. Retrieved from https://arxiv.org/abs/2306.10072v1, University of Wisconsin-Madison
+
+## How to Contribute
+Please do PR for only ONE section at a time.
