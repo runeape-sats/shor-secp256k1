@@ -164,7 +164,7 @@ For ECDLP on SECP256K1, the QFT uses $\(m \approx 256\)$ qubits (or slightly mor
 - **Implication**: Both require error rates below $\(10^{-2}\) (modern targets: \(10^{-3}\)–\(10^{-4}\))$, but ECDLP’s smaller scale offers slight resilience.
 
 ### Implications  
-This toy example demonstrates Shor’s algorithm breaking ECDLP by hand, scalable to SECP256K1’s real-world threat.
+This toy example demonstrates Shor’s algorithm breaking ECDLP by hand, scalable to SECP256K1’s real-world threat. [ECDSA addresses](https://github.com/runeape-sats/shor-secp256k1/blob/address-safety/ecdsaaddressnote.md) may be vulnerable when pubic keys were revealed during TX spending or dApps usages.
 
 ### Conclusion  
 Using $y^2 = x^3 + 7$ over $\mathbb{F}_{11}$, we showed Shor’s algorithm with QFT, mirroring SECP256K1’s vulnerability in a simplified form.
