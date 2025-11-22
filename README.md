@@ -168,8 +168,7 @@ For ECDLP on SECP256K1, the QFT uses $\(m \approx 256\)$ qubits (or slightly mor
 ### Implications  
 This toy example demonstrates Shor’s algorithm breaking ECDLP by hand, scalable to SECP256K1’s real-world threat. [ECDSA addresses](https://github.com/runeape-sats/shor-secp256k1/blob/main/ecdsaaddressnote.md) may be vulnerable when pubic keys were revealed during TX spending or dApps usages. There is [BIP-360](https://github.com/cryptoquick/bips/blob/p2qrh/bip-0360.mediawiki) on the BTC side working on the Pay-to-Quantum-Resistant-Hash.
 
-![addressissues](https://github.com/user-attachments/assets/5222f63a-8505-487d-89a7-a711e6a37a29)
-
+![addressissues](https://github.com/user-attachments/assets/389a9702-2897-4b77-81c1-98a0d8b81c03)
 
 ### Conclusion  
 Using $y^2 = x^3 + 7$ over $\mathbb{F}_{11}$, we showed Shor’s algorithm with QFT, mirroring SECP256K1’s vulnerability in a simplified form.
