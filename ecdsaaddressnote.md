@@ -1,7 +1,8 @@
 ## **ECDSA Addresses subject to Shor-like ECDSA public key solver**
 
-| **Blockchain/L2**    | **Address Type**       | **Primary Use of secp256k1**                  | **Quantum Vulnerability**                          | **Notes**                                                                 |
+| **Blockchain**    | **Address Type**       | **Primary Use of secp256k1**                  | **Quantum Vulnerability**                          | **Notes**                                                                 |
 |-----------------------|------------------------|----------------------------------------------|---------------------------------------------------|---------------------------------------------------------------------------|
+| Bitcoin              | P2PK ([pay-to-public-key](https://learnmeabitcoin.com/technical/script/p2pk/))            | Digital signatures (ECDSA), key generation   | Vulnerable              | Pubkey is btc address. Used by early BTC miners (~38k addresses received 50 BTC each)     |
 | Bitcoin              | P2PKH ("1")            | Digital signatures (ECDSA), key generation   | Safe if unspent; Vulnerable if spent              | Pubkey hidden in hash until spent; revealed in scriptSig post-spend.     |
 | Bitcoin              | P2SH ("3")             | Digital signatures (ECDSA), key generation   | Safe if unspent; Vulnerable if pubkey in script & spent | Pubkey exposure depends on redeem script (e.g., multisig).              |
 | Bitcoin              | P2WPKH ("bc1q")        | Digital signatures (ECDSA), key generation   | Safe if unspent; Vulnerable if spent              | SegWit; pubkey revealed in witness data when spent.                      |
